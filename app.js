@@ -39,16 +39,10 @@ socket.addEventListener('message', event => {
             span.textContent = '\u00D7';
             li.appendChild(span);
         });
-    } else if (data.type === 'moveStart') {
-        // Обробка події початку пересування
+    } else if (data.type === 'move') {
+        // Обробка події пересування
         const items = Array.from(listContainer.children);
         const item = items[data.from];
-        item.classList.add('dragging');
-    } else if (data.type === 'moveEnd') {
-        // Обробка події завершення пересування
-        const items = Array.from(listContainer.children);
-        const item = items[data.from];
-        item.classList.remove('dragging');
         listContainer.removeChild(item);
         listContainer.insertBefore(item, items[data.to]);
     } else if (data.type === 'input') {
